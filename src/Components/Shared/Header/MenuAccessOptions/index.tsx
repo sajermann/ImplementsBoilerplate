@@ -1,0 +1,172 @@
+import { Fragment, useMemo, useRef, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
+import { HeaderButton } from '~/Components/Shared/Header/HeaderButton';
+import { Icons } from '~/Components/Shared/Icons';
+import { Input } from '~/Components/Shared/Input';
+import { Main } from '~/Components/Shared/Main';
+import { Nav } from '~/Components/Shared/Nav';
+import { useRoutesMenu } from '~/Hooks/UseRoutesMenu';
+import { useTranslation } from '~/Hooks/UseTranslation';
+import { TRoutesMenu } from '~/Types/TRoutesMenu';
+import { managerClassNames } from '~/Utils/ManagerClassNames';
+import { MenuCollapsible } from '../MenuCollapsible';
+import BlockRightToLeftTransition from './BlockRightToLeftTransition';
+import BoxScroll from './BoxScroll';
+
+interface TProps extends TRoutesMenu {
+  onClick?: () => void;
+}
+
+function BuildNormalOption({ path, label, onClick, hideMenu }: TProps) {
+  if (hideMenu) return null;
+  return (
+    <li>
+      <NavLink
+        onClick={onClick}
+        // key={generateGuid()} // Não lembro pq coloquei a key nesse cara, mas lembro que era importante
+        to={path}
+        className={({ isActive }) =>
+          managerClassNames([
+            { 'w-[90%] flex p-2 hover:text-violet-700': true },
+            { 'transition-colors duration-300': true },
+            { 'border-2 border-x-0 border-t-0 border-violet-700': isActive },
+            { 'text-violet-700': isActive },
+          ])
+        }
+        end
+      >
+        {label}
+      </NavLink>
+    </li>
+  );
+}
+
+function buildTrigger({
+  isOpen,
+  ...rest
+}: { isOpen: boolean; onClick?: () => void } & TRoutesMenu) {
+  const IS_OPEN: Record<string, React.ReactNode> = {
+    true: <Icons nameIcon="arrowSingleDown" width="20" />,
+    false: <Icons nameIcon="arrowSingleRight" width="20" />,
+  };
+  return (
+    <div className="flex items-center justify-between w-full">
+      <div className="flex-1">
+        <BuildNormalOption {...rest} />
+      </div>
+      <div className="w-10 p-2  flex items-center justify-center">
+        {IS_OPEN[String(isOpen)]}
+      </div>
+    </div>
+  );
+}
+
+function buildMenuWithSub(menu: TProps) {
+  if (menu.subs?.find(item => !item.hideMenu) && !menu.hideMenu) {
+    return (
+      <li>
+        <MenuCollapsible
+          defaultIsOpen={menu.expandedMenu}
+          pathChilds={menu.subs.map(item => item.path)}
+          trigger={triggerIsOpen =>
+            buildTrigger({
+              isOpen: triggerIsOpen,
+              ...menu,
+            })
+          }
+        >
+          <ul>
+            {menu.subs.map(subMenu => (
+              <Fragment key={subMenu.name}>
+                {buildMenuWithSub({ ...subMenu, onClick: menu.onClick })}
+              </Fragment>
+            ))}
+          </ul>
+        </MenuCollapsible>
+      </li>
+    );
+  }
+
+  return (
+    <BuildNormalOption
+      // key={generateGuid()}  // Não lembro pq coloquei a key nesse cara, mas lembro que era importante
+      {...menu}
+    />
+  );
+}
+
+export default function MenuAccessOptions({
+  onClick,
+  hideHeader,
+}: {
+  onClick?: () => void;
+  hideHeader?: boolean;
+}) {
+  const { translate, currentLanguage } = useTranslation();
+  const [isVisibleSearch, setIsVisibleSearch] = useState(false);
+  const [search, setSearch] = useState('');
+  const { globalMenus } = useRoutesMenu();
+  const refInputSearch = useRef<HTMLInputElement>(null);
+
+  const mount = useMemo(() => globalMenus(search), [search, currentLanguage]);
+
+  return (
+    <Main className="backdrop-blur-md text-white">
+      {!hideHeader && (
+        <Nav>
+          <div className="w-full flex items-center justify-between gap-2">
+            <h2 className="text-xl whitespace-nowrap font-bold">Menu</h2>
+            <div className="flex items-center justify-end gap-2">
+              <BlockRightToLeftTransition width="9rem" show={isVisibleSearch}>
+                <Input
+                  ref={refInputSearch}
+                  type="search"
+                  placeholder={translate('SEARCH_MENU')}
+                  value={search}
+                  onChange={({ target }) => setSearch(target.value)}
+                  className="w-36"
+                />
+              </BlockRightToLeftTransition>
+
+              <HeaderButton
+                onClick={() => {
+                  setSearch('');
+                  setIsVisibleSearch(!isVisibleSearch);
+                  if (refInputSearch?.current) {
+                    refInputSearch.current.focus();
+                  }
+                }}
+              >
+                {isVisibleSearch ? (
+                  <Icons nameIcon="close" width="1.5rem" />
+                ) : (
+                  <Icons nameIcon="search" width="1.5rem" />
+                )}
+              </HeaderButton>
+            </div>
+          </div>
+        </Nav>
+      )}
+      <BoxScroll>
+        <ul>
+          {mount.map(menu => {
+            if (menu.subs) {
+              return (
+                <Fragment key={JSON.stringify(menu.subs)}>
+                  {buildMenuWithSub({ ...menu, onClick })}
+                </Fragment>
+              );
+            }
+            return (
+              <BuildNormalOption key={menu.name} {...menu} onClick={onClick} />
+            );
+          })}
+          {!mount.length && (
+            <span className="h-14">{translate('NO_RESULT')}</span>
+          )}
+        </ul>
+      </BoxScroll>
+    </Main>
+  );
+}

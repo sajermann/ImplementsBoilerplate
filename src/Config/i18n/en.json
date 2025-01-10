@@ -1,0 +1,18 @@
+{
+  "translations": {
+    "SEARCH_MENU": "Search Menu",
+    "SETTINGS": "Settings",
+    "DARK": "Dark",
+    "LIGHT": "Light",
+    "ENGLISH": "English",
+    "PORTUGUESE": "Portuguese",
+    "LANGUAGE": "Language",
+    "THEME": "Theme",
+    "SEARCH_BOX": "Search Box",
+    "ACCESSIBILITY": "Accessibility",
+    "BY": {
+      "CAT": "Cat"
+    },
+    "BY_2": "Dog {{reference}}"
+  }
+}
