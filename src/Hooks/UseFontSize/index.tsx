@@ -6,67 +6,56 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { TFontSizeContextType } from './types';
+import { _changeDom } from './utils';
 
-const IDENTIFIER = '@implements-boilerplate/datepicker:fontSize';
+const IDENTIFIER = `${import.meta.env.VITE_APPLICATION_IDENTIFIER}:fontSize`;
+const DEFAULT_FONT_SIZE = 16;
 
-type FontSizeContextType = {
-  defaultFontSize: number;
-  fontSize: number;
-  increaseFont: () => void;
-  decreaseFont: () => void;
-  resetFont: () => void;
-};
-
-const fontSizeContextDefaultValues: FontSizeContextType =
-  {} as FontSizeContextType;
-
-const FontSizeContext = createContext<FontSizeContextType>(
-  fontSizeContextDefaultValues,
+const FontSizeContext = createContext<TFontSizeContextType>(
+  {} as TFontSizeContextType,
 );
 
 export function useFontSize() {
   return useContext(FontSizeContext);
 }
 
-type Props = {
-  children: ReactNode;
-};
-
-export function FontSizeProvider({ children }: Props) {
-  const defaultFontSize = 16;
-  const [fontSize, setFontSize] = useState(defaultFontSize);
-
-  function changeDom(newValue: number) {
-    const html = document.querySelector('html') as HTMLElement;
-    html.style.fontSize = `${newValue}px`;
-    sessionStorage.setItem(IDENTIFIER, String(newValue));
-    setFontSize(newValue);
-  }
-
-  function increaseFont() {
-    changeDom(fontSize + 1);
-  }
-  function decreaseFont() {
-    changeDom(fontSize - 1);
-  }
-  function resetFont() {
-    changeDom(defaultFontSize);
-  }
+export function FontSizeProvider({ children }: { children: ReactNode }) {
+  const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE);
 
   useEffect(() => {
     const result = sessionStorage.getItem(IDENTIFIER);
     if (result) {
-      changeDom(Number(result));
+      _changeDom({
+        identifier: IDENTIFIER,
+        setFontSize,
+        value: Number(result),
+      });
     }
   }, []);
 
   const memoizedValue = useMemo(
     () => ({
       fontSize,
-      defaultFontSize,
-      increaseFont,
-      decreaseFont,
-      resetFont,
+      defaultFontSize: DEFAULT_FONT_SIZE,
+      increaseFont: () =>
+        _changeDom({
+          identifier: IDENTIFIER,
+          setFontSize,
+          value: fontSize + 1,
+        }),
+      decreaseFont: () =>
+        _changeDom({
+          identifier: IDENTIFIER,
+          setFontSize,
+          value: fontSize - 1,
+        }),
+      resetFont: () =>
+        _changeDom({
+          identifier: IDENTIFIER,
+          setFontSize,
+          value: DEFAULT_FONT_SIZE,
+        }),
     }),
     [fontSize],
   );

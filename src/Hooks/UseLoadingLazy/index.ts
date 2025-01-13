@@ -1,16 +1,16 @@
 import { create } from 'zustand';
 
-interface Props {
-	isLoadingLazy: boolean;
-	setIsLoadingLazy: (data: boolean) => void;
-}
+type TUseLoadingLazyProps = {
+  isLoadingLazy: boolean;
+  setIsLoadingLazy: (data: boolean) => void;
+};
 
-export const useLoadingLazy = create<Props>()(set => ({
-	isLoadingLazy: true,
-	setIsLoadingLazy: (data: boolean) =>
-		set(state => ({
-			...state,
-			isLoadingLazy: data,
-		})),
+export const useLoadingLazy = create<TUseLoadingLazyProps>()(set => ({
+  isLoadingLazy: true,
+  setIsLoadingLazy: (data: boolean) =>
+    set(state => ({
+      ...state,
+      isLoadingLazy: data,
+    })),
 }));
 window.store = useLoadingLazy;

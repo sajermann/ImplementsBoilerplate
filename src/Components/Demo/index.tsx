@@ -2,7 +2,7 @@ import { useTranslation } from '~/Hooks/UseTranslation';
 import en from './i18n/en.json';
 import ptBr from './i18n/pt-br.json';
 
-export function Test() {
+export function Demo() {
   const { translate } = useTranslation([
     { lng: 'en', resources: en },
     { lng: 'pt-BR', resources: ptBr },

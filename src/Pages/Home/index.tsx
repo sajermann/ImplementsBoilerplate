@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 
 import { Icons } from '~/Components/Shared/Icons';
 import { Main } from '~/Components/Shared/Main';
-import { Test } from '~/Components/Test';
 
 import { useRoutesMenu } from '~/Hooks/UseRoutesMenu';
 import { useTranslation } from '~/Hooks/UseTranslation';
@@ -15,8 +14,6 @@ export function Home() {
   return (
     <Main>
       <div className="flex flex-col items-center justify-center">
-        <Test></Test>
-
         <a
           href="https://github.com/sajermann/MyImplementationsInReact/"
           target="_blank"

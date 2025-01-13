@@ -9,32 +9,20 @@ import {
   useState,
 } from 'react';
 import { useLocation } from 'react-router-dom';
-import { TBreadcrumb } from '~/Types/TBreadcrumbs';
 import { useRoutesMenu } from '../UseRoutesMenu';
 import { useTranslation } from '../UseTranslation';
-import { breadcrumbs as breadcrumbsBuild } from './Utils';
+import { _getBreadcrumbs } from './Utils';
+import { TBreadcrumb, TBreadcrumbsContextType } from './types';
 
-type BreadcrumbsContextType = {
-  breadcrumbs: TBreadcrumb[];
-  setBreadcrumbs: Dispatch<SetStateAction<TBreadcrumb[]>>;
-};
-
-const breadcrumbsContextDefaultValues: BreadcrumbsContextType =
-  {} as BreadcrumbsContextType;
-
-const BreadcrumbsContext = createContext<BreadcrumbsContextType>(
-  breadcrumbsContextDefaultValues,
+const BreadcrumbsContext = createContext<TBreadcrumbsContextType>(
+  {} as TBreadcrumbsContextType,
 );
 
 export function useBreadcrumbs() {
   return useContext(BreadcrumbsContext);
 }
 
-type Props = {
-  children: ReactNode;
-};
-
-export function BreadcrumbsProvider({ children }: Props) {
+export function BreadcrumbsProvider({ children }: { children: ReactNode }) {
   const [breadcrumbs, setBreadcrumbs] = useState<TBreadcrumb[]>([]);
   const { currentLanguage } = useTranslation();
   const location = useLocation();
@@ -42,7 +30,7 @@ export function BreadcrumbsProvider({ children }: Props) {
 
   useEffect(() => {
     const results = location.pathname.split('/');
-    const final = breadcrumbsBuild.get(results, options);
+    const final = _getBreadcrumbs(results, options);
     setBreadcrumbs(final);
   }, [location.pathname, currentLanguage]);
 

@@ -13,7 +13,7 @@ export function InjectorProviders({
   noLayout?: true;
 }) {
   return (
-    <BrowserRouter basename={import.meta.env.VITE_URL_BASENAME}>
+    <BrowserRouter>
       <BreadcrumbsProvider>
         <FontSizeProvider>
           {noLayout && children}

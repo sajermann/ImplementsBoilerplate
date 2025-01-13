@@ -4,7 +4,7 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { menus } from '.';
+import { _getMenus } from '.';
 
 describe('Utils/Menus', () => {
   it(`should not found menu`, async () => {
@@ -22,7 +22,7 @@ describe('Utils/Menus', () => {
         hideTriRoutes: false,
       },
     ];
-    const result = menus.get(mock, 'menu 2');
+    const result = _getMenus(mock, 'menu 2');
     expect(JSON.stringify(result)).toBe(JSON.stringify([]));
   });
 
@@ -40,7 +40,7 @@ describe('Utils/Menus', () => {
         hideTriRoutes: false,
       },
     ];
-    const result = menus.get(mock, 'menu 1');
+    const result = _getMenus(mock, 'menu 1');
     expect(JSON.stringify(result)).toBe(JSON.stringify(mock));
   });
 
@@ -72,7 +72,7 @@ describe('Utils/Menus', () => {
         hideTriRoutes: false,
       },
     ];
-    const result = menus.get(mock, 'sub menu 1');
+    const result = _getMenus(mock, 'sub menu 1');
     expect(JSON.stringify(result)).toBe(JSON.stringify(subMenu));
   });
 
@@ -118,7 +118,7 @@ describe('Utils/Menus', () => {
         hideTriRoutes: false,
       },
     ];
-    const result = menus.get(mock, 'sub menu of sub menu');
+    const result = _getMenus(mock, 'sub menu of sub menu');
     expect(JSON.stringify(result)).toBe(JSON.stringify(subMenuOfSubMenu));
   });
 });
