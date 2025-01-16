@@ -6,7 +6,7 @@ type Props = {
   width: string | number;
 };
 
-export default function _Block_Right_To_Left_Transition({
+export default function _BlockRightToLeftTransition({
   show,
   children,
   width,

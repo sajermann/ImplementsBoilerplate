@@ -13,7 +13,11 @@ export function Home() {
 
   return (
     <Main>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-2">
+        <p>
+          <strong>{translate('WELCOME')}</strong>
+        </p>
+        <p>{translate('HOME_MESSAGE_PRESENTATION')}</p>
         <a
           href="https://github.com/sajermann/MyImplementationsInReact/"
           target="_blank"
@@ -48,8 +52,9 @@ export function Home() {
                 <header className="border-b-2 p-2 flex justify-center items-center bg-dark-500 rounded-t-2xl text-white">
                   {opt.name}
                 </header>
+
                 <main className="w-full p-2 flex items-center justify-center flex-1 m-auto">
-                  {opt.demo || translate('NO_VIEW')}
+                  {opt.description}
                 </main>
 
                 <footer className="border-t-2 flex bg-dark-500">

@@ -4,16 +4,16 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { InjectorProviders } from '~/Components/Shared/InjectorProviders';
-import { Home } from '.';
+import { _MenuAccessOptions } from '.';
 
-describe('Pages/Home', () => {
-  it(`must change Select components`, async () => {
+describe('Components/Shared/Header/MenuAccessOptions', () => {
+  it(`must render`, async () => {
     const { getAllByText } = render(
-      <InjectorProviders>
-        <Home />
+      <InjectorProviders noLayout>
+        <_MenuAccessOptions />
       </InjectorProviders>,
     );
-    const text = await getAllByText('Welcome')[0];
+    const text = await getAllByText('Menu')[0];
     expect(text).toBeInTheDocument();
   });
 });

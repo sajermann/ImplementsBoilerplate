@@ -10,5 +10,5 @@ export function IsLoading() {
     setIsLoadingLazy(true);
     return () => setIsLoadingLazy(false);
   }, []);
-  return <p>{translate('LOADING...')}</p>;
+  return <p>{translate('LOADING')}...</p>;
 }

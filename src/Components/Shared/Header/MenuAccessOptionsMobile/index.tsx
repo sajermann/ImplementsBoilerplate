@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Drawer } from '../../Drawer';
 import { Icons } from '../../Icons';
 import { HeaderButton } from '../HeaderButton';
-import MenuAccessOptions from '../MenuAccessOptions';
+import { _MenuAccessOptions } from '../MenuAccessOptions';
 
-export default function _MenuAccessOptionsMobile() {
+export function _MenuAccessOptionsMobile() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -21,7 +21,7 @@ export default function _MenuAccessOptionsMobile() {
           className: 'w-96',
         }}
       >
-        <MenuAccessOptions onClick={() => setIsOpen(false)} />
+        <_MenuAccessOptions onClick={() => setIsOpen(false)} />
       </Drawer>
     </>
   );

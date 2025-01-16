@@ -1,5 +1,17 @@
 {
   "translations": {
+    "SEARCH_OPTIONS": "Search Options",
+    "NOT_FOUND_PAGE": "Not Found Page",
+    "NOT_FOUND": "Not Found",
+    "LOADING": "Loading",
+    "MY_DEMO": "My Demo",
+    "WELCOME": "Welcome",
+    "HOME_MESSAGE_PRESENTATION": "Project created to demonstrate how I do my implementations in React.",
+    "TABLE_OF_CONTENTS": "Table of Content",
+    "SECTION_DEMO": "Section Demo",
+    "SECTION": "Section",
+    "DESCRIPTION": "Description",
+    "DEMO": "Demo",
     "SEARCH_MENU": "Search Menu",
     "SETTINGS": "Settings",
     "DARK": "Dark",

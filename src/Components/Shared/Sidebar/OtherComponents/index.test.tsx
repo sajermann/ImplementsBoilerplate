@@ -14,29 +14,18 @@ describe('Components/Sidebar/OtherComponents', () => {
     const prev = {
       name: 'Home',
       path: '/',
-      implements_code: '',
-      docs_code: '',
       label: 'Home',
     } as TRoutesMenu;
 
     const current = {
       name: 'Button',
       path: '/button',
-      implements_code:
-        'https://github.com/sajermann/MyImplementationsInReact/tree/main/src/Components/Button/',
-      docs_code:
-        'https://github.com/sajermann/MyImplementationsInReact/tree/main/src/Pages/Button',
       label: 'Button',
     } as TRoutesMenu;
 
     const next = {
       name: 'Modal',
       path: '/modal',
-      implements_code:
-        'https://github.com/sajermann/MyImplementationsInReact/tree/main/src/Components/Modal',
-      docs_code:
-        'https://github.com/sajermann/MyImplementationsInReact/tree/main/src/Pages/Modal',
-
       label: 'Modal',
     } as TRoutesMenu;
 
@@ -62,8 +51,6 @@ describe('Components/Sidebar/OtherComponents', () => {
     const prev = {
       name: 'Home',
       path: '/',
-      implements_code: '',
-      docs_code: '',
       label: 'Home',
     } as TRoutesMenu;
 

@@ -17,6 +17,12 @@ const NotFoundPage = lazy(() =>
   })),
 );
 
+const DemoPage = lazy(() =>
+  import('~/Pages/Demo').then(({ DemoPage: Demo }) => ({
+    default: Demo,
+  })),
+);
+
 export function useRoutesMenu() {
   const { translate, currentLanguage } = useTranslation();
   const location = useLocation();
@@ -26,29 +32,20 @@ export function useRoutesMenu() {
         {
           name: 'Home',
           path: '/',
-          implements_code: '',
-          docs_code: '',
           element: <Home />,
           label: 'Home',
           hideTriRoutes: true,
         },
-
-        // {
-        // 	name: 'Countdown',
-        // 	path: '/countdown',
-        // 	implements_code:
-        // 		'https://github.com/sajermann/MyImplementationsInReact/tree/main/src/Components/Countdown',
-        // 	docs_code:
-        // 		'https://github.com/sajermann/MyImplementationsInReact/tree/main/src/Pages/Countdown',
-        // 	element: <CountdownPage />,
-        // 	label: 'Countdown',
-        // 	demo: <CountdownDemo />,
-        // },
+        {
+          name: 'Demo',
+          path: '/demo',
+          description: translate('MY_DEMO'),
+          element: <DemoPage />,
+          label: 'Demo',
+        },
         {
           name: 'NotFound',
           path: '*',
-          implements_code: '',
-          docs_code: '',
           element: <NotFoundPage />,
           label: translate('NOT_FOUND'),
           hideTriRoutes: true,

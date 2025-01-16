@@ -4,16 +4,16 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { InjectorProviders } from '~/Components/Shared/InjectorProviders';
-import { Home } from '.';
+import { Demo } from '.';
 
-describe('Pages/Home', () => {
-  it(`must change Select components`, async () => {
+describe('Components/Demo', () => {
+  it(`must render`, async () => {
     const { getAllByText } = render(
-      <InjectorProviders>
-        <Home />
+      <InjectorProviders noLayout>
+        <Demo />
       </InjectorProviders>,
     );
-    const text = await getAllByText('Welcome')[0];
+    const text = await getAllByText('My Component Test - Strong')[0];
     expect(text).toBeInTheDocument();
   });
 });
