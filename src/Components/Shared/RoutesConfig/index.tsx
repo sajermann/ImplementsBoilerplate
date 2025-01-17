@@ -4,7 +4,7 @@ import { useRoutesMenu } from '~/Hooks/UseRoutesMenu';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { TRoutesMenu } from '~/Types/TRoutesMenu';
 import { Sidebar } from '../Sidebar';
-import Breadcrumbs from './Breadcumbs';
+import _Breadcrumbs from './Breadcumbs';
 import { IsLoading } from './IsLoading';
 
 export function RoutesConfig() {
@@ -28,7 +28,7 @@ export function RoutesConfig() {
     <div className="w-full 2xl:max-w-[1330px] p-2 gap-5 flex  my-0 mx-auto">
       <div className="w-full flex flex-col h-full gap-2 flex-1">
         <Suspense fallback={<IsLoading />}>
-          <Breadcrumbs />
+          <_Breadcrumbs />
           <Routes>{mountRoutes(options)}</Routes>
         </Suspense>
       </div>

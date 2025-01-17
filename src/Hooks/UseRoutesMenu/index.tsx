@@ -9,6 +9,7 @@ import {
 import { useTranslation } from '~/Hooks/UseTranslation';
 import { Home } from '~/Pages/Home';
 import { TRoutesMenu } from '~/Types/TRoutesMenu';
+import { delay } from '~/Utils/Delay';
 import { TTriRoutes } from './Types';
 
 const NotFoundPage = lazy(() =>
@@ -17,11 +18,12 @@ const NotFoundPage = lazy(() =>
   })),
 );
 
-const DemoPage = lazy(() =>
-  import('~/Pages/Demo').then(({ DemoPage: Demo }) => ({
+const DemoPage = lazy(async () => {
+  await delay(4000);
+  return import('~/Pages/Demo').then(({ DemoPage: Demo }) => ({
     default: Demo,
-  })),
-);
+  }));
+});
 
 export function useRoutesMenu() {
   const { translate, currentLanguage } = useTranslation();

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.1.2",
+    "@sajermann/utils": "^0.0.10",
     "clsx": "^2.1.1",
     "framer-motion": "^11.16.1",
     "i18next": "^24.2.1",
@@ -19,7 +20,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.4.0",
-    "react-router-dom": "^7.1.1",
+    "react-router-dom": "^6.3.0",
     "tailwind-variants": "^0.3.0",
     "tailwindcss-animate": "^1.0.7",
     "translation-check": "^1.1.0",
