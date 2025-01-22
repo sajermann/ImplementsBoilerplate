@@ -1,42 +1,25 @@
-import { Fragment, Suspense } from 'react';
-import { useRoutesMenu } from '~/Hooks/UseRoutesMenu';
+import { Suspense } from 'react';
+import { useLocation } from 'react-router';
 
-import { Route, Routes, useLocation } from 'react-router-dom';
-import { TRoutesMenu } from '~/Types/TRoutesMenu';
-import { Sidebar } from '../Sidebar';
+import { useRoutesMenu } from '~/Hooks/UseRoutesMenu';
 import _Breadcrumbs from './Breadcumbs';
 import { IsLoading } from './IsLoading';
+import { _MountRoutes } from './MountRoutes';
+import { _Sidebar } from './Sidebar';
 
 export function RoutesConfig() {
   const { globalRoutes: options } = useRoutesMenu();
   const location = useLocation();
 
-  function mountRoutes(routes: TRoutesMenu[]) {
-    return (
-      <>
-        {routes.map(route => (
-          <Fragment key={route.name}>
-            <Route key={route.name} path={route.path} element={route.element} />
-            {route.subs && mountRoutes(route.subs)}
-          </Fragment>
-        ))}
-      </>
-    );
-  }
-
   return (
     <div className="w-full 2xl:max-w-[1330px] p-2 gap-5 flex  my-0 mx-auto">
       <div className="w-full flex flex-col h-full gap-2 flex-1">
-        <Suspense fallback={<IsLoading />}>
+        <Suspense key={location.key} fallback={<IsLoading />}>
           <_Breadcrumbs />
-          <Routes>{mountRoutes(options)}</Routes>
+          <_MountRoutes routes={options} />
         </Suspense>
       </div>
-      {location.pathname !== '/' && (
-        <div className="hidden min-w-[18rem] w-72 max-w-[18rem] xl:flex">
-          <Sidebar />
-        </div>
-      )}
+      <_Sidebar />
     </div>
   );
 }

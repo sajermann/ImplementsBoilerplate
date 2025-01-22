@@ -1,4 +1,8 @@
-import { BrowserRouter } from 'react-router-dom';
+import {
+  BrowserRouter,
+  RouterProvider,
+  createBrowserRouter,
+} from 'react-router';
 import { BreadcrumbsProvider } from '~/Hooks/UseBreadcrumbs';
 import { FontSizeProvider } from '~/Hooks/UseFontSize';
 import { Layout } from '../Layout';

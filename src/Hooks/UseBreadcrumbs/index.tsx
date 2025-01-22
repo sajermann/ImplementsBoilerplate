@@ -8,7 +8,7 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { useRoutesMenu } from '../UseRoutesMenu';
 import { useTranslation } from '../UseTranslation';
 import { _getBreadcrumbs } from './Utils';

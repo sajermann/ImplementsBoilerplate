@@ -1,7 +1,7 @@
 import { Icons } from '~/Components/Shared/Icons';
 import { Main } from '../Main';
 
-export default function Credits() {
+export function _Credits() {
   return (
     <Main heading="🛠 by Bruno Sajermann">
       <div className="flex gap-2 items-center justify-center">

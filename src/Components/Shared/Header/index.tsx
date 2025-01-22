@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import { Nav } from '../Nav';
 import { _MenuAccessOptionsMobile } from './MenuAccessOptionsMobile';

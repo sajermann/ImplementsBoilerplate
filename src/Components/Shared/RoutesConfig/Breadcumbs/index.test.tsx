@@ -2,7 +2,7 @@
  * @vitest-environment jsdom
  */
 import { render } from '@testing-library/react';
-import * as useLocationMock from 'react-router-dom';
+import * as useLocationMock from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { InjectorProviders } from '~/Components/Shared/InjectorProviders';
 import * as useBreadcrumbsMock from '~/Hooks/UseBreadcrumbs';
@@ -14,8 +14,8 @@ describe('Components/Breadcrumbs', () => {
     vi.clearAllMocks();
     vi.resetAllMocks();
 
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual<any>('react-router-dom');
+    vi.mock('react-router', async () => {
+      const mod = await vi.importActual<any>('react-router');
       return {
         ...mod,
         useLocation: () => ({

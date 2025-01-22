@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Icons } from '~/Components/Shared/Icons';
 
 import { Input } from '~/Components/Shared/Input';

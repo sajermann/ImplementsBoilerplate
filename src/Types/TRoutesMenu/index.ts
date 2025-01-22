@@ -9,4 +9,7 @@ export type TRoutesMenu = {
   label: string;
   hideTriRoutes?: boolean;
   className?: string;
+  router?: {
+    index?: boolean;
+  };
 };

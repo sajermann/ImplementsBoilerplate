@@ -3,9 +3,9 @@
  */
 import { render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+import { InjectorProviders } from '~/Components/Shared/InjectorProviders';
 import * as useLoadingLazyMock from '~/Hooks/UseLoadingLazy';
 import { TableOfContents } from '.';
-import { InjectorProviders } from '../../InjectorProviders';
 
 describe('Components/Sidebar/TableOfContents', () => {
   it(`should render table of content`, async () => {
