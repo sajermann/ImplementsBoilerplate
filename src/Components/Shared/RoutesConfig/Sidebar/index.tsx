@@ -4,7 +4,6 @@ import { OtherComponents } from './OtherComponents';
 import { TableOfContents } from './TableOfContents';
 
 export function _Sidebar() {
-  console.log({ location: location.pathname });
   if (location.pathname === '/') {
     return null;
   }
