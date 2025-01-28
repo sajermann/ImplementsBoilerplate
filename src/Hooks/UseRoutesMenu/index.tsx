@@ -1,24 +1,25 @@
 import { lazy, useMemo } from 'react';
-import { createRoutesFromElements, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 
 import {
   _getMenus,
-  _sortCustom,
+  _sortCustomName,
+  _sortCustomOrder,
   getTriRoutes,
-} from '~/Hooks/UseRoutesMenu/Utils';
-import { useTranslation } from '~/Hooks/UseTranslation';
-import { Home } from '~/Pages/Home';
-import { TRoutesMenu } from '~/Types/TRoutesMenu';
-import { TTriRoutes } from './Types';
+} from '~/hooks/useRoutesMenu/utils';
+import { useTranslation } from '~/hooks/useTranslation';
+import { Home } from '~/pages/Home';
+import { TRoutesMenu } from '~/types/TRoutesMenu';
+import { TTriRoutes } from './types';
 
 const NotFoundPage = lazy(() =>
-  import('~/Pages/NotFound').then(({ NotFoundPage: NotFound }) => ({
+  import('~/pages/NotFound').then(({ NotFoundPage: NotFound }) => ({
     default: NotFound,
   })),
 );
 
 const DemoPage = lazy(() =>
-  import('~/Pages/Demo').then(({ DemoPage: Demo }) => ({
+  import('~/pages/Demo').then(({ DemoPage: Demo }) => ({
     default: Demo,
   })),
 );
@@ -36,6 +37,7 @@ export function useRoutesMenu() {
           label: 'Home',
           hideTriRoutes: true,
           index: true,
+          order: 0,
         },
         {
           name: 'Demo',
@@ -52,7 +54,9 @@ export function useRoutesMenu() {
           hideTriRoutes: true,
           hideMenu: true,
         },
-      ].sort(_sortCustom),
+      ]
+        .sort(_sortCustomName)
+        .sort(_sortCustomOrder),
     [currentLanguage],
   );
 

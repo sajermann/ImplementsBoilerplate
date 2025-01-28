@@ -1,13 +1,9 @@
-import {
-  BrowserRouter,
-  RouterProvider,
-  createBrowserRouter,
-} from 'react-router';
-import { BreadcrumbsProvider } from '~/Hooks/UseBreadcrumbs';
-import { FontSizeProvider } from '~/Hooks/UseFontSize';
+import { BrowserRouter } from 'react-router';
+import { BreadcrumbsProvider } from '~/hooks/useBreadcrumbs';
+import { FontSizeProvider } from '~/hooks/useFontSize';
 import { Layout } from '../Layout';
 
-import '~/Config/i18n';
+import '~/config/i18n';
 
 export function InjectorProviders({
   children,

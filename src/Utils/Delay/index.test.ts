@@ -9,7 +9,7 @@ async function mock() {
 	return true;
 }
 
-describe('Utils/Delay', () => {
+describe('Utils/delay', () => {
 	it(`should wait for delay`, async () => {
 		const result = await mock();
 		expect(result).toBeTruthy();

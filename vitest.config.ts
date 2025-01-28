@@ -11,10 +11,10 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './src/Config/Test/setup.ts',
+    setupFiles: './src/config/test/setup.ts',
     coverage: {
       reporter: ['text', 'lcov', 'html'],
-      exclude: ['**/main.tsx', '**/*.d.ts', '**/types/**', '**/interface/**'],
+      exclude: ['**/index.tsx', '**/*.d.ts', '**/types/**', '**/interface/**'],
       include: ['src/**'],
     },
   },
