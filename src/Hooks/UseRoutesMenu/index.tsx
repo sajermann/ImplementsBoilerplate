@@ -12,15 +12,15 @@ import { Home } from '~/pages/Home';
 import { TRoutesMenu } from '~/types/TRoutesMenu';
 import { TTriRoutes } from './types';
 
-const NotFoundPage = lazy(() =>
-  import('~/pages/NotFound').then(({ NotFoundPage: NotFound }) => ({
-    default: NotFound,
-  })),
-);
-
 const DemoPage = lazy(() =>
   import('~/pages/Demo').then(({ DemoPage: Demo }) => ({
     default: Demo,
+  })),
+);
+
+const NotFoundPage = lazy(() =>
+  import('~/pages/NotFound').then(({ NotFoundPage: NotFound }) => ({
+    default: NotFound,
   })),
 );
 
@@ -35,14 +35,15 @@ export function useRoutesMenu() {
           path: '/',
           element: <Home />,
           label: 'Home',
-          hideTriRoutes: true,
-          index: true,
+          hide: {
+            home: true,
+            otherComponents: true,
+          },
           order: 0,
         },
         {
           name: 'Demo',
           path: '/demo',
-          description: translate('MY_DEMO'),
           element: <DemoPage />,
           label: 'Demo',
         },
@@ -51,8 +52,10 @@ export function useRoutesMenu() {
           path: '*',
           element: <NotFoundPage />,
           label: translate('NOT_FOUND'),
-          hideTriRoutes: true,
-          hideMenu: true,
+          hide: {
+            home: true,
+            otherComponents: true,
+          },
         },
       ]
         .sort(_sortCustomName)

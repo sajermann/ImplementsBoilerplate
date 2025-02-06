@@ -3,13 +3,13 @@
  */
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { InjectorProviders } from '~/components/shared/InjectorProviders';
+import { InjectorProviders } from '~/components/InjectorProviders';
 import { Demo } from '.';
 
 describe('Components/Demo', () => {
   it(`must render`, async () => {
     const { getAllByText } = render(
-      <InjectorProviders noLayout>
+      <InjectorProviders>
         <Demo />
       </InjectorProviders>,
     );

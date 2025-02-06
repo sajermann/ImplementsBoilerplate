@@ -1,9 +1,6 @@
+import { EyeIcon } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router';
-import { Icons } from '~/components/shared/Icons';
-
-import { Input } from '~/components/shared/Input';
-import { Main } from '~/components/shared/Main';
 import { useBreadcrumbs } from '~/hooks/useBreadcrumbs';
 import { useRoutesMenu } from '~/hooks/useRoutesMenu';
 import { useTranslation } from '~/hooks/useTranslation';
@@ -26,10 +23,11 @@ export function NotFoundPage() {
   }, []);
 
   return (
-    <Main>
+    <main className="flex flex-col gap-2">
       <div>{translate('NOT_FOUND_PAGE')}</div>
 
-      <Input
+      <input
+        className="ring-0 outline-none border rounded p-2"
         type="search"
         placeholder={translate('SEARCH_OPTIONS')}
         value={search}
@@ -44,12 +42,14 @@ export function NotFoundPage() {
               to={opt.path}
               className="flex flex-col flex-1 items-center justify-center gap-1 p-1 text-sm hover:text-primary-700 transition-colors duration-500"
             >
-              <Icons nameIcon="eye" width="30px" />
+              <EyeIcon width="30px" />
               Demo
             </Link>
           </div>
         </div>
       ))}
-    </Main>
+
+      {!mount.length && <p>{translate('NO_RESULTS')}</p>}
+    </main>
   );
 }

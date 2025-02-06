@@ -204,6 +204,7 @@ describe('Utils/TriRoutes', () => {
       className: '2',
     };
     const result = getTriRoutes([first, second], 'test');
+    console.log({ result });
     expect(JSON.stringify(result)).toBe(
       JSON.stringify({
         actual: { ...childrens[1] },
