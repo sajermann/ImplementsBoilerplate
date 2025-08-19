@@ -1,5 +1,5 @@
-import { useTranslation } from '~/hooks/useTranslation';
-import { CenterContent } from './components/CenterContent';
+import { useTranslation } from "~/hooks/useTranslation";
+import { CenterContent } from "./components/CenterContent";
 
 const APPLICATION_NAME = import.meta.env.VITE_APPLICATION_NAME;
 
@@ -10,11 +10,11 @@ export function Home() {
     <main className="h-full gap-5 flex flex-col">
       <div className="flex flex-col items-center justify-center gap-2">
         <h1 className="text-3xl">
-          <strong>{`${translate('WELCOME')} - ${APPLICATION_NAME}`}</strong>
+          <strong>{`${translate("WELCOME")} - ${APPLICATION_NAME}`}</strong>
         </h1>
-        <p>{translate('HOME_MESSAGE_PRESENTATION')}</p>
+        <p>{translate("HOME_MESSAGE_PRESENTATION")}</p>
         <a
-          href="https://github.com/sajermann/DatepickerComponentReact/"
+          href="https://github.com/sajermann/BoilerplateComponentReact/"
           target="_blank"
           rel="noreferrer"
         >
